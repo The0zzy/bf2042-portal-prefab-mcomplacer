@@ -1615,7 +1615,7 @@
                                                   <block type="Wait">
                                                     <value name="VALUE-0">
                                                       <block type="Number">
-                                                        <field name="NUM">0.3</field>
+                                                        <field name="NUM">0.4</field>
                                                       </block>
                                                     </value>
                                                   </block>
@@ -1904,7 +1904,7 @@
                                                       <block type="Wait">
                                                         <value name="VALUE-0">
                                                           <block type="Number">
-                                                            <field name="NUM">0.3</field>
+                                                            <field name="NUM">0.4</field>
                                                           </block>
                                                         </value>
                                                       </block>
