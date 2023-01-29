@@ -332,7 +332,7 @@
                                 </value>
                                 <value name="VALUE-1">
                                   <block type="Number">
-                                    <field name="NUM">0.25</field>
+                                    <field name="NUM">0.1</field>
                                   </block>
                                 </value>
                               </block>
@@ -459,7 +459,7 @@
                                     </value>
                                     <value name="VALUE-1">
                                       <block type="Number">
-                                        <field name="NUM">0.5</field>
+                                        <field name="NUM">0.2</field>
                                       </block>
                                     </value>
                                   </block>
