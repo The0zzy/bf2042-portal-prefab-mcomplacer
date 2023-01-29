@@ -117,22 +117,39 @@
                 <next>
                   <block type="conditionBlock">
                     <value name="CONDITION">
-                      <block type="Not">
+                      <block type="GetSoldierState">
                         <value name="VALUE-0">
-                          <block type="IsInventorySlotActive">
+                          <block type="EventPlayer"></block>
+                        </value>
+                        <value name="VALUE-1">
+                          <block type="SoldierStateBoolItem">
+                            <field name="VALUE-0">SoldierStateBool</field>
+                            <field name="VALUE-1">IsAlive</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="conditionBlock">
+                        <value name="CONDITION">
+                          <block type="Not">
                             <value name="VALUE-0">
-                              <block type="EventPlayer"></block>
-                            </value>
-                            <value name="VALUE-1">
-                              <block type="InventorySlotsItem">
-                                <field name="VALUE-0">InventorySlots</field>
-                                <field name="VALUE-1">CharacterGadget</field>
+                              <block type="IsInventorySlotActive">
+                                <value name="VALUE-0">
+                                  <block type="EventPlayer"></block>
+                                </value>
+                                <value name="VALUE-1">
+                                  <block type="InventorySlotsItem">
+                                    <field name="VALUE-0">InventorySlots</field>
+                                    <field name="VALUE-1">CharacterGadget</field>
+                                  </block>
+                                </value>
                               </block>
                             </value>
                           </block>
                         </value>
                       </block>
-                    </value>
+                    </next>
                   </block>
                 </next>
               </block>
@@ -186,50 +203,67 @@
                     <next>
                       <block type="conditionBlock">
                         <value name="CONDITION">
-                          <block type="NotEqualTo">
+                          <block type="GetSoldierState">
                             <value name="VALUE-0">
-                              <block type="Add">
+                              <block type="EventPlayer"></block>
+                            </value>
+                            <value name="VALUE-1">
+                              <block type="SoldierStateBoolItem">
+                                <field name="VALUE-0">SoldierStateBool</field>
+                                <field name="VALUE-1">IsAlive</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="conditionBlock">
+                            <value name="CONDITION">
+                              <block type="NotEqualTo">
                                 <value name="VALUE-0">
-                                  <block type="GetSoldierState">
+                                  <block type="Add">
                                     <value name="VALUE-0">
-                                      <block type="EventPlayer"></block>
+                                      <block type="GetSoldierState">
+                                        <value name="VALUE-0">
+                                          <block type="EventPlayer"></block>
+                                        </value>
+                                        <value name="VALUE-1">
+                                          <block type="SoldierStateVectorItem">
+                                            <field name="VALUE-0">SoldierStateVector</field>
+                                            <field name="VALUE-1">GetPosition</field>
+                                          </block>
+                                        </value>
+                                      </block>
                                     </value>
                                     <value name="VALUE-1">
-                                      <block type="SoldierStateVectorItem">
-                                        <field name="VALUE-0">SoldierStateVector</field>
-                                        <field name="VALUE-1">GetPosition</field>
+                                      <block type="GetSoldierState">
+                                        <value name="VALUE-0">
+                                          <block type="EventPlayer"></block>
+                                        </value>
+                                        <value name="VALUE-1">
+                                          <block type="SoldierStateVectorItem">
+                                            <field name="VALUE-0">SoldierStateVector</field>
+                                            <field name="VALUE-1">GetFacingDirection</field>
+                                          </block>
+                                        </value>
                                       </block>
                                     </value>
                                   </block>
                                 </value>
                                 <value name="VALUE-1">
-                                  <block type="GetSoldierState">
+                                  <block type="GetVariable">
                                     <value name="VALUE-0">
-                                      <block type="EventPlayer"></block>
-                                    </value>
-                                    <value name="VALUE-1">
-                                      <block type="SoldierStateVectorItem">
-                                        <field name="VALUE-0">SoldierStateVector</field>
-                                        <field name="VALUE-1">GetFacingDirection</field>
-                                      </block>
-                                    </value>
-                                  </block>
-                                </value>
-                              </block>
-                            </value>
-                            <value name="VALUE-1">
-                              <block type="GetVariable">
-                                <value name="VALUE-0">
-                                  <block type="variableReferenceBlock">
-                                    <mutation isObjectVar="true"></mutation>
-                                    <field name="OBJECTTYPE">MCOM</field>
-                                    <field name="VAR" id="xndSqkjj}2w9ECztfo^N" variabletype="MCOM">currentPosition</field>
-                                    <value name="OBJECT">
-                                      <block type="GetCapturePoint">
-                                        <value name="VALUE-0">
-                                          <block type="MCOMsItem">
-                                            <field name="VALUE-0">MCOMs</field>
-                                            <field name="VALUE-1">A</field>
+                                      <block type="variableReferenceBlock">
+                                        <mutation isObjectVar="true"></mutation>
+                                        <field name="OBJECTTYPE">MCOM</field>
+                                        <field name="VAR" id="xndSqkjj}2w9ECztfo^N" variabletype="MCOM">currentPosition</field>
+                                        <value name="OBJECT">
+                                          <block type="GetCapturePoint">
+                                            <value name="VALUE-0">
+                                              <block type="MCOMsItem">
+                                                <field name="VALUE-0">MCOMs</field>
+                                                <field name="VALUE-1">A</field>
+                                              </block>
+                                            </value>
                                           </block>
                                         </value>
                                       </block>
@@ -239,7 +273,7 @@
                               </block>
                             </value>
                           </block>
-                        </value>
+                        </next>
                       </block>
                     </next>
                   </block>
@@ -381,11 +415,28 @@
                                 <value name="VALUE-1">
                                   <block type="SoldierStateBoolItem">
                                     <field name="VALUE-0">SoldierStateBool</field>
-                                    <field name="VALUE-1">IsInteracting</field>
+                                    <field name="VALUE-1">IsAlive</field>
                                   </block>
                                 </value>
                               </block>
                             </value>
+                            <next>
+                              <block type="conditionBlock">
+                                <value name="CONDITION">
+                                  <block type="GetSoldierState">
+                                    <value name="VALUE-0">
+                                      <block type="EventPlayer"></block>
+                                    </value>
+                                    <value name="VALUE-1">
+                                      <block type="SoldierStateBoolItem">
+                                        <field name="VALUE-0">SoldierStateBool</field>
+                                        <field name="VALUE-1">IsInteracting</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
                           </block>
                         </next>
                       </block>
