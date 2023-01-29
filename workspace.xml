@@ -4,7 +4,7 @@
     <variable type="MCOM" id="xndSqkjj}2w9ECztfo^N">currentPosition</variable>
     <variable type="Global" id="AqP5Bt4}F{]@PZ.dn(tv">distanceMultiplier</variable>
   </variables>
-  <block type="modBlock" deletable="false" x="47" y="22">
+  <block type="modBlock" deletable="false" x="0" y="0">
     <statement name="RULES">
       <block type="ruleBlock">
         <mutation isOnGoingEvent="false"></mutation>
@@ -175,14 +175,31 @@
                         <value name="CONDITION">
                           <block type="Not">
                             <value name="VALUE-0">
-                              <block type="IsInventorySlotActive">
+                              <block type="Or">
                                 <value name="VALUE-0">
-                                  <block type="EventPlayer"></block>
+                                  <block type="IsInventorySlotActive">
+                                    <value name="VALUE-0">
+                                      <block type="EventPlayer"></block>
+                                    </value>
+                                    <value name="VALUE-1">
+                                      <block type="InventorySlotsItem">
+                                        <field name="VALUE-0">InventorySlots</field>
+                                        <field name="VALUE-1">CharacterGadget</field>
+                                      </block>
+                                    </value>
+                                  </block>
                                 </value>
                                 <value name="VALUE-1">
-                                  <block type="InventorySlotsItem">
-                                    <field name="VALUE-0">InventorySlots</field>
-                                    <field name="VALUE-1">CharacterGadget</field>
+                                  <block type="IsInventorySlotActive">
+                                    <value name="VALUE-0">
+                                      <block type="EventPlayer"></block>
+                                    </value>
+                                    <value name="VALUE-1">
+                                      <block type="InventorySlotsItem">
+                                        <field name="VALUE-0">InventorySlots</field>
+                                        <field name="VALUE-1">OpenGadget</field>
+                                      </block>
+                                    </value>
                                   </block>
                                 </value>
                               </block>
@@ -203,20 +220,33 @@
                 <value name="VALUE-1">
                   <block type="CharacterGadgetsItem">
                     <field name="VALUE-0">CharacterGadgetsGrafton</field>
-                    <field name="VALUE-1">Binoculars</field>
+                    <field name="VALUE-1">RepairTool_GRA</field>
                   </block>
                 </value>
                 <next>
-                  <block type="ForceSwitchInventory">
+                  <block type="AddSoldierWeapon">
                     <value name="VALUE-0">
                       <block type="EventPlayer"></block>
                     </value>
                     <value name="VALUE-1">
-                      <block type="InventorySlotsItem">
-                        <field name="VALUE-0">InventorySlots</field>
-                        <field name="VALUE-1">CharacterGadget</field>
+                      <block type="OpenGadgetsItem">
+                        <field name="VALUE-0">OpenGadgetsKingston</field>
+                        <field name="VALUE-1">RepairTool</field>
                       </block>
                     </value>
+                    <next>
+                      <block type="ForceSwitchInventory">
+                        <value name="VALUE-0">
+                          <block type="EventPlayer"></block>
+                        </value>
+                        <value name="VALUE-1">
+                          <block type="InventorySlotsItem">
+                            <field name="VALUE-0">InventorySlots</field>
+                            <field name="VALUE-1">CharacterGadget</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
                   </block>
                 </next>
               </block>
@@ -723,7 +753,7 @@
                             <next>
                               <block type="ruleBlock">
                                 <mutation isOnGoingEvent="true"></mutation>
-                                <field name="NAME">rotateMcom</field>
+                                <field name="NAME">rotateMcomClockwise</field>
                                 <field name="EVENTTYPE">Ongoing</field>
                                 <field name="OBJECTTYPE">Player</field>
                                 <statement name="CONDITIONS">
@@ -758,18 +788,35 @@
                                         <next>
                                           <block type="conditionBlock">
                                             <value name="CONDITION">
-                                              <block type="GetSoldierState">
+                                              <block type="IsInventorySlotActive">
                                                 <value name="VALUE-0">
                                                   <block type="EventPlayer"></block>
                                                 </value>
                                                 <value name="VALUE-1">
-                                                  <block type="SoldierStateBoolItem">
-                                                    <field name="VALUE-0">SoldierStateBool</field>
-                                                    <field name="VALUE-1">IsFiring</field>
+                                                  <block type="InventorySlotsItem">
+                                                    <field name="VALUE-0">InventorySlots</field>
+                                                    <field name="VALUE-1">CharacterGadget</field>
                                                   </block>
                                                 </value>
                                               </block>
                                             </value>
+                                            <next>
+                                              <block type="conditionBlock">
+                                                <value name="CONDITION">
+                                                  <block type="GetSoldierState">
+                                                    <value name="VALUE-0">
+                                                      <block type="EventPlayer"></block>
+                                                    </value>
+                                                    <value name="VALUE-1">
+                                                      <block type="SoldierStateBoolItem">
+                                                        <field name="VALUE-0">SoldierStateBool</field>
+                                                        <field name="VALUE-1">IsFiring</field>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </next>
                                           </block>
                                         </next>
                                       </block>
@@ -777,86 +824,103 @@
                                   </block>
                                 </statement>
                                 <statement name="ACTIONS">
-                                  <block type="If">
-                                    <mutation else="1"></mutation>
+                                  <block type="While">
                                     <value name="VALUE-0">
-                                      <block type="LessThan">
+                                      <block type="GetSoldierState">
                                         <value name="VALUE-0">
-                                          <block type="Add">
-                                            <value name="VALUE-0">
-                                              <block type="Number">
-                                                <field name="NUM">0.1</field>
-                                              </block>
-                                            </value>
-                                            <value name="VALUE-1">
-                                              <block type="GetVariable">
-                                                <value name="VALUE-0">
-                                                  <block type="variableReferenceBlock">
-                                                    <mutation isObjectVar="true"></mutation>
-                                                    <field name="OBJECTTYPE">MCOM</field>
-                                                    <field name="VAR" id="xRqK}}(gZy01FO)u]?%4" variabletype="MCOM">currentYaw</field>
-                                                    <value name="OBJECT">
-                                                      <block type="GetCapturePoint">
-                                                        <value name="VALUE-0">
-                                                          <block type="MCOMsItem">
-                                                            <field name="VALUE-0">MCOMs</field>
-                                                            <field name="VALUE-1">A</field>
-                                                          </block>
-                                                        </value>
-                                                      </block>
-                                                    </value>
-                                                  </block>
-                                                </value>
-                                              </block>
-                                            </value>
-                                          </block>
+                                          <block type="EventPlayer"></block>
                                         </value>
                                         <value name="VALUE-1">
-                                          <block type="Number">
-                                            <field name="NUM">6.3</field>
+                                          <block type="SoldierStateBoolItem">
+                                            <field name="VALUE-0">SoldierStateBool</field>
+                                            <field name="VALUE-1">IsFiring</field>
                                           </block>
                                         </value>
                                       </block>
                                     </value>
                                     <statement name="DO">
-                                      <block type="SetVariable">
+                                      <block type="If">
+                                        <mutation else="1"></mutation>
                                         <value name="VALUE-0">
-                                          <block type="variableReferenceBlock">
-                                            <mutation isObjectVar="true"></mutation>
-                                            <field name="OBJECTTYPE">MCOM</field>
-                                            <field name="VAR" id="xRqK}}(gZy01FO)u]?%4" variabletype="MCOM">currentYaw</field>
-                                            <value name="OBJECT">
-                                              <block type="GetCapturePoint">
+                                          <block type="LessThan">
+                                            <value name="VALUE-0">
+                                              <block type="Add">
                                                 <value name="VALUE-0">
-                                                  <block type="MCOMsItem">
-                                                    <field name="VALUE-0">MCOMs</field>
-                                                    <field name="VALUE-1">A</field>
+                                                  <block type="Number">
+                                                    <field name="NUM">0.1</field>
+                                                  </block>
+                                                </value>
+                                                <value name="VALUE-1">
+                                                  <block type="GetVariable">
+                                                    <value name="VALUE-0">
+                                                      <block type="variableReferenceBlock">
+                                                        <mutation isObjectVar="true"></mutation>
+                                                        <field name="OBJECTTYPE">MCOM</field>
+                                                        <field name="VAR" id="xRqK}}(gZy01FO)u]?%4" variabletype="MCOM">currentYaw</field>
+                                                        <value name="OBJECT">
+                                                          <block type="GetCapturePoint">
+                                                            <value name="VALUE-0">
+                                                              <block type="MCOMsItem">
+                                                                <field name="VALUE-0">MCOMs</field>
+                                                                <field name="VALUE-1">A</field>
+                                                              </block>
+                                                            </value>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </value>
                                                   </block>
                                                 </value>
                                               </block>
                                             </value>
+                                            <value name="VALUE-1">
+                                              <block type="Number">
+                                                <field name="NUM">6.3</field>
+                                              </block>
+                                            </value>
                                           </block>
                                         </value>
-                                        <value name="VALUE-1">
-                                          <block type="Add">
+                                        <statement name="DO">
+                                          <block type="SetVariable">
                                             <value name="VALUE-0">
-                                              <block type="Number">
-                                                <field name="NUM">0.1</field>
+                                              <block type="variableReferenceBlock">
+                                                <mutation isObjectVar="true"></mutation>
+                                                <field name="OBJECTTYPE">MCOM</field>
+                                                <field name="VAR" id="xRqK}}(gZy01FO)u]?%4" variabletype="MCOM">currentYaw</field>
+                                                <value name="OBJECT">
+                                                  <block type="GetCapturePoint">
+                                                    <value name="VALUE-0">
+                                                      <block type="MCOMsItem">
+                                                        <field name="VALUE-0">MCOMs</field>
+                                                        <field name="VALUE-1">A</field>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </value>
                                               </block>
                                             </value>
                                             <value name="VALUE-1">
-                                              <block type="GetVariable">
+                                              <block type="Add">
                                                 <value name="VALUE-0">
-                                                  <block type="variableReferenceBlock">
-                                                    <mutation isObjectVar="true"></mutation>
-                                                    <field name="OBJECTTYPE">MCOM</field>
-                                                    <field name="VAR" id="xRqK}}(gZy01FO)u]?%4" variabletype="MCOM">currentYaw</field>
-                                                    <value name="OBJECT">
-                                                      <block type="GetCapturePoint">
-                                                        <value name="VALUE-0">
-                                                          <block type="MCOMsItem">
-                                                            <field name="VALUE-0">MCOMs</field>
-                                                            <field name="VALUE-1">A</field>
+                                                  <block type="Number">
+                                                    <field name="NUM">0.1</field>
+                                                  </block>
+                                                </value>
+                                                <value name="VALUE-1">
+                                                  <block type="GetVariable">
+                                                    <value name="VALUE-0">
+                                                      <block type="variableReferenceBlock">
+                                                        <mutation isObjectVar="true"></mutation>
+                                                        <field name="OBJECTTYPE">MCOM</field>
+                                                        <field name="VAR" id="xRqK}}(gZy01FO)u]?%4" variabletype="MCOM">currentYaw</field>
+                                                        <value name="OBJECT">
+                                                          <block type="GetCapturePoint">
+                                                            <value name="VALUE-0">
+                                                              <block type="MCOMsItem">
+                                                                <field name="VALUE-0">MCOMs</field>
+                                                                <field name="VALUE-1">A</field>
+                                                              </block>
+                                                            </value>
                                                           </block>
                                                         </value>
                                                       </block>
@@ -866,46 +930,55 @@
                                               </block>
                                             </value>
                                           </block>
-                                        </value>
-                                      </block>
-                                    </statement>
-                                    <statement name="ELSE">
-                                      <block type="SetVariable">
-                                        <value name="VALUE-0">
-                                          <block type="variableReferenceBlock">
-                                            <mutation isObjectVar="true"></mutation>
-                                            <field name="OBJECTTYPE">MCOM</field>
-                                            <field name="VAR" id="xRqK}}(gZy01FO)u]?%4" variabletype="MCOM">currentYaw</field>
-                                            <value name="OBJECT">
-                                              <block type="GetCapturePoint">
-                                                <value name="VALUE-0">
-                                                  <block type="MCOMsItem">
-                                                    <field name="VALUE-0">MCOMs</field>
-                                                    <field name="VALUE-1">A</field>
+                                        </statement>
+                                        <statement name="ELSE">
+                                          <block type="SetVariable">
+                                            <value name="VALUE-0">
+                                              <block type="variableReferenceBlock">
+                                                <mutation isObjectVar="true"></mutation>
+                                                <field name="OBJECTTYPE">MCOM</field>
+                                                <field name="VAR" id="xRqK}}(gZy01FO)u]?%4" variabletype="MCOM">currentYaw</field>
+                                                <value name="OBJECT">
+                                                  <block type="GetCapturePoint">
+                                                    <value name="VALUE-0">
+                                                      <block type="MCOMsItem">
+                                                        <field name="VALUE-0">MCOMs</field>
+                                                        <field name="VALUE-1">A</field>
+                                                      </block>
+                                                    </value>
                                                   </block>
                                                 </value>
                                               </block>
                                             </value>
+                                            <value name="VALUE-1">
+                                              <block type="Number">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
                                           </block>
-                                        </value>
-                                        <value name="VALUE-1">
-                                          <block type="Number">
-                                            <field name="NUM">0</field>
+                                        </statement>
+                                        <next>
+                                          <block type="subroutineInstanceBlock">
+                                            <field name="SUBROUTINE_NAME">replaceMcom</field>
+                                            <next>
+                                              <block type="Wait">
+                                                <value name="VALUE-0">
+                                                  <block type="Number">
+                                                    <field name="NUM">0.5</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </next>
                                           </block>
-                                        </value>
+                                        </next>
                                       </block>
                                     </statement>
-                                    <next>
-                                      <block type="subroutineInstanceBlock">
-                                        <field name="SUBROUTINE_NAME">replaceMcom</field>
-                                      </block>
-                                    </next>
                                   </block>
                                 </statement>
                                 <next>
                                   <block type="ruleBlock">
                                     <mutation isOnGoingEvent="true"></mutation>
-                                    <field name="NAME">rotateMcom</field>
+                                    <field name="NAME">rotateMcomAntiClockwise</field>
                                     <field name="EVENTTYPE">Ongoing</field>
                                     <field name="OBJECTTYPE">Player</field>
                                     <statement name="CONDITIONS">
@@ -940,18 +1013,35 @@
                                             <next>
                                               <block type="conditionBlock">
                                                 <value name="CONDITION">
-                                                  <block type="GetSoldierState">
+                                                  <block type="IsInventorySlotActive">
                                                     <value name="VALUE-0">
                                                       <block type="EventPlayer"></block>
                                                     </value>
                                                     <value name="VALUE-1">
-                                                      <block type="SoldierStateBoolItem">
-                                                        <field name="VALUE-0">SoldierStateBool</field>
-                                                        <field name="VALUE-1">IsZooming</field>
+                                                      <block type="InventorySlotsItem">
+                                                        <field name="VALUE-0">InventorySlots</field>
+                                                        <field name="VALUE-1">OpenGadget</field>
                                                       </block>
                                                     </value>
                                                   </block>
                                                 </value>
+                                                <next>
+                                                  <block type="conditionBlock">
+                                                    <value name="CONDITION">
+                                                      <block type="GetSoldierState">
+                                                        <value name="VALUE-0">
+                                                          <block type="EventPlayer"></block>
+                                                        </value>
+                                                        <value name="VALUE-1">
+                                                          <block type="SoldierStateBoolItem">
+                                                            <field name="VALUE-0">SoldierStateBool</field>
+                                                            <field name="VALUE-1">IsFiring</field>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </next>
                                               </block>
                                             </next>
                                           </block>
@@ -959,112 +1049,129 @@
                                       </block>
                                     </statement>
                                     <statement name="ACTIONS">
-                                      <block type="If">
-                                        <mutation else="1"></mutation>
+                                      <block type="While">
                                         <value name="VALUE-0">
-                                          <block type="LessThan">
+                                          <block type="GetSoldierState">
                                             <value name="VALUE-0">
-                                              <block type="Add">
-                                                <value name="VALUE-0">
-                                                  <block type="Number">
-                                                    <field name="NUM">-0.1</field>
-                                                  </block>
-                                                </value>
-                                                <value name="VALUE-1">
-                                                  <block type="GetVariable">
-                                                    <value name="VALUE-0">
-                                                      <block type="variableReferenceBlock">
-                                                        <mutation isObjectVar="true"></mutation>
-                                                        <field name="OBJECTTYPE">MCOM</field>
-                                                        <field name="VAR" id="xRqK}}(gZy01FO)u]?%4" variabletype="MCOM">currentYaw</field>
-                                                        <value name="OBJECT">
-                                                          <block type="GetCapturePoint">
-                                                            <value name="VALUE-0">
-                                                              <block type="MCOMsItem">
-                                                                <field name="VALUE-0">MCOMs</field>
-                                                                <field name="VALUE-1">A</field>
-                                                              </block>
-                                                            </value>
-                                                          </block>
-                                                        </value>
-                                                      </block>
-                                                    </value>
-                                                  </block>
-                                                </value>
-                                              </block>
+                                              <block type="EventPlayer"></block>
                                             </value>
                                             <value name="VALUE-1">
-                                              <block type="Number">
-                                                <field name="NUM">0</field>
+                                              <block type="SoldierStateBoolItem">
+                                                <field name="VALUE-0">SoldierStateBool</field>
+                                                <field name="VALUE-1">IsFiring</field>
                                               </block>
                                             </value>
                                           </block>
                                         </value>
                                         <statement name="DO">
-                                          <block type="SetVariable">
+                                          <block type="If">
+                                            <mutation else="1"></mutation>
                                             <value name="VALUE-0">
-                                              <block type="variableReferenceBlock">
-                                                <mutation isObjectVar="true"></mutation>
-                                                <field name="OBJECTTYPE">MCOM</field>
-                                                <field name="VAR" id="xRqK}}(gZy01FO)u]?%4" variabletype="MCOM">currentYaw</field>
-                                                <value name="OBJECT">
-                                                  <block type="GetCapturePoint">
-                                                    <value name="VALUE-0">
-                                                      <block type="MCOMsItem">
-                                                        <field name="VALUE-0">MCOMs</field>
-                                                        <field name="VALUE-1">A</field>
-                                                      </block>
-                                                    </value>
-                                                  </block>
-                                                </value>
-                                              </block>
-                                            </value>
-                                            <value name="VALUE-1">
-                                              <block type="Number">
-                                                <field name="NUM">6.28</field>
-                                              </block>
-                                            </value>
-                                          </block>
-                                        </statement>
-                                        <statement name="ELSE">
-                                          <block type="SetVariable">
-                                            <value name="VALUE-0">
-                                              <block type="variableReferenceBlock">
-                                                <mutation isObjectVar="true"></mutation>
-                                                <field name="OBJECTTYPE">MCOM</field>
-                                                <field name="VAR" id="xRqK}}(gZy01FO)u]?%4" variabletype="MCOM">currentYaw</field>
-                                                <value name="OBJECT">
-                                                  <block type="GetCapturePoint">
-                                                    <value name="VALUE-0">
-                                                      <block type="MCOMsItem">
-                                                        <field name="VALUE-0">MCOMs</field>
-                                                        <field name="VALUE-1">A</field>
-                                                      </block>
-                                                    </value>
-                                                  </block>
-                                                </value>
-                                              </block>
-                                            </value>
-                                            <value name="VALUE-1">
-                                              <block type="Add">
+                                              <block type="LessThan">
                                                 <value name="VALUE-0">
-                                                  <block type="Number">
-                                                    <field name="NUM">-0.1</field>
+                                                  <block type="Add">
+                                                    <value name="VALUE-0">
+                                                      <block type="Number">
+                                                        <field name="NUM">-0.1</field>
+                                                      </block>
+                                                    </value>
+                                                    <value name="VALUE-1">
+                                                      <block type="GetVariable">
+                                                        <value name="VALUE-0">
+                                                          <block type="variableReferenceBlock">
+                                                            <mutation isObjectVar="true"></mutation>
+                                                            <field name="OBJECTTYPE">MCOM</field>
+                                                            <field name="VAR" id="xRqK}}(gZy01FO)u]?%4" variabletype="MCOM">currentYaw</field>
+                                                            <value name="OBJECT">
+                                                              <block type="GetCapturePoint">
+                                                                <value name="VALUE-0">
+                                                                  <block type="MCOMsItem">
+                                                                    <field name="VALUE-0">MCOMs</field>
+                                                                    <field name="VALUE-1">A</field>
+                                                                  </block>
+                                                                </value>
+                                                              </block>
+                                                            </value>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </value>
                                                   </block>
                                                 </value>
                                                 <value name="VALUE-1">
-                                                  <block type="GetVariable">
+                                                  <block type="Number">
+                                                    <field name="NUM">0</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <statement name="DO">
+                                              <block type="SetVariable">
+                                                <value name="VALUE-0">
+                                                  <block type="variableReferenceBlock">
+                                                    <mutation isObjectVar="true"></mutation>
+                                                    <field name="OBJECTTYPE">MCOM</field>
+                                                    <field name="VAR" id="xRqK}}(gZy01FO)u]?%4" variabletype="MCOM">currentYaw</field>
+                                                    <value name="OBJECT">
+                                                      <block type="GetCapturePoint">
+                                                        <value name="VALUE-0">
+                                                          <block type="MCOMsItem">
+                                                            <field name="VALUE-0">MCOMs</field>
+                                                            <field name="VALUE-1">A</field>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </value>
+                                                <value name="VALUE-1">
+                                                  <block type="Number">
+                                                    <field name="NUM">6.28</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </statement>
+                                            <statement name="ELSE">
+                                              <block type="SetVariable">
+                                                <value name="VALUE-0">
+                                                  <block type="variableReferenceBlock">
+                                                    <mutation isObjectVar="true"></mutation>
+                                                    <field name="OBJECTTYPE">MCOM</field>
+                                                    <field name="VAR" id="xRqK}}(gZy01FO)u]?%4" variabletype="MCOM">currentYaw</field>
+                                                    <value name="OBJECT">
+                                                      <block type="GetCapturePoint">
+                                                        <value name="VALUE-0">
+                                                          <block type="MCOMsItem">
+                                                            <field name="VALUE-0">MCOMs</field>
+                                                            <field name="VALUE-1">A</field>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </value>
+                                                <value name="VALUE-1">
+                                                  <block type="Add">
                                                     <value name="VALUE-0">
-                                                      <block type="variableReferenceBlock">
-                                                        <mutation isObjectVar="true"></mutation>
-                                                        <field name="OBJECTTYPE">MCOM</field>
-                                                        <field name="VAR" id="xRqK}}(gZy01FO)u]?%4" variabletype="MCOM">currentYaw</field>
-                                                        <value name="OBJECT">
-                                                          <block type="GetCapturePoint">
-                                                            <value name="VALUE-0">
-                                                              <block type="MCOMsItem">
-                                                                <field name="VALUE-0">MCOMs</field>
-                                                                <field name="VALUE-1">A</field>
+                                                      <block type="Number">
+                                                        <field name="NUM">-0.1</field>
+                                                      </block>
+                                                    </value>
+                                                    <value name="VALUE-1">
+                                                      <block type="GetVariable">
+                                                        <value name="VALUE-0">
+                                                          <block type="variableReferenceBlock">
+                                                            <mutation isObjectVar="true"></mutation>
+                                                            <field name="OBJECTTYPE">MCOM</field>
+                                                            <field name="VAR" id="xRqK}}(gZy01FO)u]?%4" variabletype="MCOM">currentYaw</field>
+                                                            <value name="OBJECT">
+                                                              <block type="GetCapturePoint">
+                                                                <value name="VALUE-0">
+                                                                  <block type="MCOMsItem">
+                                                                    <field name="VALUE-0">MCOMs</field>
+                                                                    <field name="VALUE-1">A</field>
+                                                                  </block>
+                                                                </value>
                                                               </block>
                                                             </value>
                                                           </block>
@@ -1074,14 +1181,23 @@
                                                   </block>
                                                 </value>
                                               </block>
-                                            </value>
+                                            </statement>
+                                            <next>
+                                              <block type="subroutineInstanceBlock">
+                                                <field name="SUBROUTINE_NAME">replaceMcom</field>
+                                                <next>
+                                                  <block type="Wait">
+                                                    <value name="VALUE-0">
+                                                      <block type="Number">
+                                                        <field name="NUM">0.5</field>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
                                           </block>
                                         </statement>
-                                        <next>
-                                          <block type="subroutineInstanceBlock">
-                                            <field name="SUBROUTINE_NAME">replaceMcom</field>
-                                          </block>
-                                        </next>
                                       </block>
                                     </statement>
                                     <next>
@@ -1281,7 +1397,7 @@
       </block>
     </statement>
   </block>
-  <block type="subroutineBlock" deletable="false" x="88" y="3296">
+  <block type="subroutineBlock" deletable="false" x="0" y="4675">
     <field name="SUBROUTINE_NAME">replaceMcom</field>
     <statement name="ACTIONS">
       <block type="SetVariable">
