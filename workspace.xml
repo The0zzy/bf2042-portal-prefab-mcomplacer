@@ -433,7 +433,18 @@
                   <block type="Message">
                     <value name="VALUE-0">
                       <block type="Text">
-                        <field name="TEXT">MCOM Info (crouch to reset)</field>
+                        <field name="TEXT">MCOM {} - Info</field>
+                      </block>
+                    </value>
+                    <value name="VALUE-1">
+                      <block type="GetVariable">
+                        <value name="VALUE-0">
+                          <block type="variableReferenceBlock">
+                            <mutation isObjectVar="false"></mutation>
+                            <field name="OBJECTTYPE">Global</field>
+                            <field name="VAR" id="7#ffv%H(=x1[]_v%92b$" variabletype="Global">mcomIndex</field>
+                          </block>
+                        </value>
                       </block>
                     </value>
                   </block>
@@ -458,7 +469,7 @@
                       <block type="Message">
                         <value name="VALUE-0">
                           <block type="Text">
-                            <field name="TEXT">Wrench - Rotate MCOM clockwise</field>
+                            <field name="TEXT">Wrench - Rotate MCOM clockwise (crouch to reset)</field>
                           </block>
                         </value>
                       </block>
@@ -483,7 +494,7 @@
                           <block type="Message">
                             <value name="VALUE-0">
                               <block type="Text">
-                                <field name="TEXT">Repair Tool - Rotate MCOM anti-clockwise</field>
+                                <field name="TEXT">Repair Tool - Rotate MCOM anti-clockwise (crouch to reset)</field>
                               </block>
                             </value>
                           </block>
@@ -537,40 +548,106 @@
                               </block>
                             </value>
                             <statement name="DO">
-                              <block type="SetCapturePointOwner">
+                              <block type="If">
+                                <mutation else="1"></mutation>
                                 <value name="VALUE-0">
-                                  <block type="ValueInArray">
+                                  <block type="Equals">
                                     <value name="VALUE-0">
-                                      <block type="GetVariable">
+                                      <block type="GetTeamId">
                                         <value name="VALUE-0">
-                                          <block type="variableReferenceBlock">
-                                            <mutation isObjectVar="false"></mutation>
-                                            <field name="OBJECTTYPE">Global</field>
-                                            <field name="VAR" id="LUO.IZe(6JBeKIYZWc_5" variabletype="Global">mcoms</field>
+                                          <block type="EventPlayer"></block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <value name="VALUE-1">
+                                      <block type="GetTeamId">
+                                        <value name="VALUE-0">
+                                          <block type="Number">
+                                            <field name="NUM">1</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <statement name="DO">
+                                  <block type="SetCapturePointOwner">
+                                    <value name="VALUE-0">
+                                      <block type="ValueInArray">
+                                        <value name="VALUE-0">
+                                          <block type="GetVariable">
+                                            <value name="VALUE-0">
+                                              <block type="variableReferenceBlock">
+                                                <mutation isObjectVar="false"></mutation>
+                                                <field name="OBJECTTYPE">Global</field>
+                                                <field name="VAR" id="LUO.IZe(6JBeKIYZWc_5" variabletype="Global">mcoms</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <value name="VALUE-1">
+                                          <block type="GetVariable">
+                                            <value name="VALUE-0">
+                                              <block type="variableReferenceBlock">
+                                                <mutation isObjectVar="false"></mutation>
+                                                <field name="OBJECTTYPE">Global</field>
+                                                <field name="VAR" id="sp?+qo@*pF8%_8}ChnJ:" variabletype="Global">iterator</field>
+                                              </block>
+                                            </value>
                                           </block>
                                         </value>
                                       </block>
                                     </value>
                                     <value name="VALUE-1">
-                                      <block type="GetVariable">
+                                      <block type="GetTeamId">
                                         <value name="VALUE-0">
-                                          <block type="variableReferenceBlock">
-                                            <mutation isObjectVar="false"></mutation>
-                                            <field name="OBJECTTYPE">Global</field>
-                                            <field name="VAR" id="sp?+qo@*pF8%_8}ChnJ:" variabletype="Global">iterator</field>
+                                          <block type="Number">
+                                            <field name="NUM">2</field>
                                           </block>
                                         </value>
                                       </block>
                                     </value>
                                   </block>
-                                </value>
-                                <value name="VALUE-1">
-                                  <block type="GetTeamId">
+                                </statement>
+                                <statement name="ELSE">
+                                  <block type="SetCapturePointOwner">
                                     <value name="VALUE-0">
-                                      <block type="EventPlayer"></block>
+                                      <block type="ValueInArray">
+                                        <value name="VALUE-0">
+                                          <block type="GetVariable">
+                                            <value name="VALUE-0">
+                                              <block type="variableReferenceBlock">
+                                                <mutation isObjectVar="false"></mutation>
+                                                <field name="OBJECTTYPE">Global</field>
+                                                <field name="VAR" id="LUO.IZe(6JBeKIYZWc_5" variabletype="Global">mcoms</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <value name="VALUE-1">
+                                          <block type="GetVariable">
+                                            <value name="VALUE-0">
+                                              <block type="variableReferenceBlock">
+                                                <mutation isObjectVar="false"></mutation>
+                                                <field name="OBJECTTYPE">Global</field>
+                                                <field name="VAR" id="sp?+qo@*pF8%_8}ChnJ:" variabletype="Global">iterator</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <value name="VALUE-1">
+                                      <block type="GetTeamId">
+                                        <value name="VALUE-0">
+                                          <block type="Number">
+                                            <field name="NUM">1</field>
+                                          </block>
+                                        </value>
+                                      </block>
                                     </value>
                                   </block>
-                                </value>
+                                </statement>
                               </block>
                             </statement>
                           </block>
@@ -1538,7 +1615,7 @@
                                                   <block type="Wait">
                                                     <value name="VALUE-0">
                                                       <block type="Number">
-                                                        <field name="NUM">0.2</field>
+                                                        <field name="NUM">0.3</field>
                                                       </block>
                                                     </value>
                                                   </block>
@@ -1827,7 +1904,7 @@
                                                       <block type="Wait">
                                                         <value name="VALUE-0">
                                                           <block type="Number">
-                                                            <field name="NUM">0.2</field>
+                                                            <field name="NUM">0.3</field>
                                                           </block>
                                                         </value>
                                                       </block>
@@ -2115,25 +2192,16 @@
                                                                   </block>
                                                                 </value>
                                                                 <value name="VALUE-1">
-                                                                  <block type="Add">
+                                                                  <block type="CountOf">
                                                                     <value name="VALUE-0">
-                                                                      <block type="CountOf">
+                                                                      <block type="GetVariable">
                                                                         <value name="VALUE-0">
-                                                                          <block type="GetVariable">
-                                                                            <value name="VALUE-0">
-                                                                              <block type="variableReferenceBlock">
-                                                                                <mutation isObjectVar="false"></mutation>
-                                                                                <field name="OBJECTTYPE">Global</field>
-                                                                                <field name="VAR" id="LUO.IZe(6JBeKIYZWc_5" variabletype="Global">mcoms</field>
-                                                                              </block>
-                                                                            </value>
+                                                                          <block type="variableReferenceBlock">
+                                                                            <mutation isObjectVar="false"></mutation>
+                                                                            <field name="OBJECTTYPE">Global</field>
+                                                                            <field name="VAR" id="LUO.IZe(6JBeKIYZWc_5" variabletype="Global">mcoms</field>
                                                                           </block>
                                                                         </value>
-                                                                      </block>
-                                                                    </value>
-                                                                    <value name="VALUE-1">
-                                                                      <block type="Number">
-                                                                        <field name="NUM">-1</field>
                                                                       </block>
                                                                     </value>
                                                                   </block>
@@ -2187,6 +2255,117 @@
                                                                 </value>
                                                               </block>
                                                             </statement>
+                                                            <next>
+                                                              <block type="If">
+                                                                <mutation else="1"></mutation>
+                                                                <value name="VALUE-0">
+                                                                  <block type="Equals">
+                                                                    <value name="VALUE-0">
+                                                                      <block type="GetVariable">
+                                                                        <value name="VALUE-0">
+                                                                          <block type="variableReferenceBlock">
+                                                                            <mutation isObjectVar="false"></mutation>
+                                                                            <field name="OBJECTTYPE">Global</field>
+                                                                            <field name="VAR" id="7#ffv%H(=x1[]_v%92b$" variabletype="Global">mcomIndex</field>
+                                                                          </block>
+                                                                        </value>
+                                                                      </block>
+                                                                    </value>
+                                                                    <value name="VALUE-1">
+                                                                      <block type="CountOf">
+                                                                        <value name="VALUE-0">
+                                                                          <block type="GetVariable">
+                                                                            <value name="VALUE-0">
+                                                                              <block type="variableReferenceBlock">
+                                                                                <mutation isObjectVar="false"></mutation>
+                                                                                <field name="OBJECTTYPE">Global</field>
+                                                                                <field name="VAR" id="LUO.IZe(6JBeKIYZWc_5" variabletype="Global">mcoms</field>
+                                                                              </block>
+                                                                            </value>
+                                                                          </block>
+                                                                        </value>
+                                                                      </block>
+                                                                    </value>
+                                                                  </block>
+                                                                </value>
+                                                                <statement name="DO">
+                                                                  <block type="DisplayCustomNotificationMessage">
+                                                                    <value name="VALUE-0">
+                                                                      <block type="Message">
+                                                                        <value name="VALUE-0">
+                                                                          <block type="Text">
+                                                                            <field name="TEXT">NO MCOM SELECTED - INTERACT TO SWITCH MCOM</field>
+                                                                          </block>
+                                                                        </value>
+                                                                        <value name="VALUE-1">
+                                                                          <block type="GetVariable">
+                                                                            <value name="VALUE-0">
+                                                                              <block type="variableReferenceBlock">
+                                                                                <mutation isObjectVar="false"></mutation>
+                                                                                <field name="OBJECTTYPE">Global</field>
+                                                                                <field name="VAR" id="7#ffv%H(=x1[]_v%92b$" variabletype="Global">mcomIndex</field>
+                                                                              </block>
+                                                                            </value>
+                                                                          </block>
+                                                                        </value>
+                                                                      </block>
+                                                                    </value>
+                                                                    <value name="VALUE-1">
+                                                                      <block type="CustomMessagesItem">
+                                                                        <field name="VALUE-0">CustomMessages</field>
+                                                                        <field name="VALUE-1">HeaderText</field>
+                                                                      </block>
+                                                                    </value>
+                                                                    <value name="VALUE-2">
+                                                                      <block type="Number">
+                                                                        <field name="NUM">-1</field>
+                                                                      </block>
+                                                                    </value>
+                                                                    <value name="VALUE-3">
+                                                                      <block type="EventPlayer"></block>
+                                                                    </value>
+                                                                  </block>
+                                                                </statement>
+                                                                <statement name="ELSE">
+                                                                  <block type="DisplayCustomNotificationMessage">
+                                                                    <value name="VALUE-0">
+                                                                      <block type="Message">
+                                                                        <value name="VALUE-0">
+                                                                          <block type="Text">
+                                                                            <field name="TEXT">MCOM {} - Info (Interact to switch MCOM)</field>
+                                                                          </block>
+                                                                        </value>
+                                                                        <value name="VALUE-1">
+                                                                          <block type="GetVariable">
+                                                                            <value name="VALUE-0">
+                                                                              <block type="variableReferenceBlock">
+                                                                                <mutation isObjectVar="false"></mutation>
+                                                                                <field name="OBJECTTYPE">Global</field>
+                                                                                <field name="VAR" id="7#ffv%H(=x1[]_v%92b$" variabletype="Global">mcomIndex</field>
+                                                                              </block>
+                                                                            </value>
+                                                                          </block>
+                                                                        </value>
+                                                                      </block>
+                                                                    </value>
+                                                                    <value name="VALUE-1">
+                                                                      <block type="CustomMessagesItem">
+                                                                        <field name="VALUE-0">CustomMessages</field>
+                                                                        <field name="VALUE-1">HeaderText</field>
+                                                                      </block>
+                                                                    </value>
+                                                                    <value name="VALUE-2">
+                                                                      <block type="Number">
+                                                                        <field name="NUM">-1</field>
+                                                                      </block>
+                                                                    </value>
+                                                                    <value name="VALUE-3">
+                                                                      <block type="EventPlayer"></block>
+                                                                    </value>
+                                                                  </block>
+                                                                </statement>
+                                                              </block>
+                                                            </next>
                                                           </block>
                                                         </next>
                                                       </block>
@@ -2252,8 +2431,50 @@
                                                   </block>
                                                 </statement>
                                                 <statement name="ACTIONS">
-                                                  <block type="subroutineInstanceBlock">
-                                                    <field name="SUBROUTINE_NAME">replaceMcom</field>
+                                                  <block type="SetVariable">
+                                                    <value name="VALUE-0">
+                                                      <block type="variableReferenceBlock">
+                                                        <mutation isObjectVar="true"></mutation>
+                                                        <field name="OBJECTTYPE">MCOM</field>
+                                                        <field name="VAR" id="xRqK}}(gZy01FO)u]?%4" variabletype="MCOM">currentYaw</field>
+                                                        <value name="OBJECT">
+                                                          <block type="ValueInArray">
+                                                            <value name="VALUE-0">
+                                                              <block type="GetVariable">
+                                                                <value name="VALUE-0">
+                                                                  <block type="variableReferenceBlock">
+                                                                    <mutation isObjectVar="false"></mutation>
+                                                                    <field name="OBJECTTYPE">Global</field>
+                                                                    <field name="VAR" id="LUO.IZe(6JBeKIYZWc_5" variabletype="Global">mcoms</field>
+                                                                  </block>
+                                                                </value>
+                                                              </block>
+                                                            </value>
+                                                            <value name="VALUE-1">
+                                                              <block type="GetVariable">
+                                                                <value name="VALUE-0">
+                                                                  <block type="variableReferenceBlock">
+                                                                    <mutation isObjectVar="false"></mutation>
+                                                                    <field name="OBJECTTYPE">Global</field>
+                                                                    <field name="VAR" id="7#ffv%H(=x1[]_v%92b$" variabletype="Global">mcomIndex</field>
+                                                                  </block>
+                                                                </value>
+                                                              </block>
+                                                            </value>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </value>
+                                                    <value name="VALUE-1">
+                                                      <block type="Number">
+                                                        <field name="NUM">0</field>
+                                                      </block>
+                                                    </value>
+                                                    <next>
+                                                      <block type="subroutineInstanceBlock">
+                                                        <field name="SUBROUTINE_NAME">replaceMcom</field>
+                                                      </block>
+                                                    </next>
                                                   </block>
                                                 </statement>
                                               </block>
@@ -2279,7 +2500,7 @@
       </block>
     </statement>
   </block>
-  <block type="subroutineBlock" deletable="false" x="0" y="6524">
+  <block type="subroutineBlock" deletable="false" x="0" y="7064">
     <field name="SUBROUTINE_NAME">replaceMcom</field>
     <statement name="ACTIONS">
       <block type="SetVariable">
