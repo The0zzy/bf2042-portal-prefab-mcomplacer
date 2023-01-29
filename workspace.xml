@@ -964,7 +964,7 @@
                                               <block type="Wait">
                                                 <value name="VALUE-0">
                                                   <block type="Number">
-                                                    <field name="NUM">0.5</field>
+                                                    <field name="NUM">0.2</field>
                                                   </block>
                                                 </value>
                                               </block>
@@ -1189,7 +1189,7 @@
                                                   <block type="Wait">
                                                     <value name="VALUE-0">
                                                       <block type="Number">
-                                                        <field name="NUM">0.5</field>
+                                                        <field name="NUM">0.2</field>
                                                       </block>
                                                     </value>
                                                   </block>
@@ -1378,6 +1378,69 @@
                                             </next>
                                           </block>
                                         </statement>
+                                        <next>
+                                          <block type="ruleBlock">
+                                            <mutation isOnGoingEvent="true"></mutation>
+                                            <field name="NAME">resetMcom</field>
+                                            <field name="EVENTTYPE">Ongoing</field>
+                                            <field name="OBJECTTYPE">Player</field>
+                                            <statement name="CONDITIONS">
+                                              <block type="conditionBlock">
+                                                <value name="CONDITION">
+                                                  <block type="GreaterThan">
+                                                    <value name="VALUE-0">
+                                                      <block type="GetGameModeTimeElapsed"></block>
+                                                    </value>
+                                                    <value name="VALUE-1">
+                                                      <block type="Number">
+                                                        <field name="NUM">1</field>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </value>
+                                                <next>
+                                                  <block type="conditionBlock">
+                                                    <value name="CONDITION">
+                                                      <block type="GetSoldierState">
+                                                        <value name="VALUE-0">
+                                                          <block type="EventPlayer"></block>
+                                                        </value>
+                                                        <value name="VALUE-1">
+                                                          <block type="SoldierStateBoolItem">
+                                                            <field name="VALUE-0">SoldierStateBool</field>
+                                                            <field name="VALUE-1">IsAlive</field>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </value>
+                                                    <next>
+                                                      <block type="conditionBlock">
+                                                        <value name="CONDITION">
+                                                          <block type="GetSoldierState">
+                                                            <value name="VALUE-0">
+                                                              <block type="EventPlayer"></block>
+                                                            </value>
+                                                            <value name="VALUE-1">
+                                                              <block type="SoldierStateBoolItem">
+                                                                <field name="VALUE-0">SoldierStateBool</field>
+                                                                <field name="VALUE-1">IsCrouching</field>
+                                                              </block>
+                                                            </value>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </statement>
+                                            <statement name="ACTIONS">
+                                              <block type="subroutineInstanceBlock">
+                                                <field name="SUBROUTINE_NAME">replaceMcom</field>
+                                              </block>
+                                            </statement>
+                                          </block>
+                                        </next>
                                       </block>
                                     </next>
                                   </block>
@@ -1397,7 +1460,7 @@
       </block>
     </statement>
   </block>
-  <block type="subroutineBlock" deletable="false" x="0" y="4675">
+  <block type="subroutineBlock" deletable="false" x="0" y="5015">
     <field name="SUBROUTINE_NAME">replaceMcom</field>
     <statement name="ACTIONS">
       <block type="SetVariable">
