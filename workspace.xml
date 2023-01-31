@@ -6,6 +6,7 @@
     <variable type="Global" id="LUO.IZe(6JBeKIYZWc_5">mcoms</variable>
     <variable type="Global" id="7#ffv%H(=x1[]_v%92b$">mcomIndex</variable>
     <variable type="Global" id="sp?+qo@*pF8%_8}ChnJ:">iterator</variable>
+    <variable type="Global" id="OG;b*~m1Fk^w./j:JZLJ">rotationIntermission</variable>
   </variables>
   <block type="modBlock" deletable="false" x="0" y="0">
     <statement name="RULES">
@@ -234,43 +235,35 @@
                                                   </block>
                                                 </value>
                                                 <next>
-                                                  <block type="ForVariable">
+                                                  <block type="SetVariable">
                                                     <value name="VALUE-0">
                                                       <block type="variableReferenceBlock">
                                                         <mutation isObjectVar="false"></mutation>
                                                         <field name="OBJECTTYPE">Global</field>
-                                                        <field name="VAR" id="sp?+qo@*pF8%_8}ChnJ:" variabletype="Global">iterator</field>
+                                                        <field name="VAR" id="OG;b*~m1Fk^w./j:JZLJ" variabletype="Global">rotationIntermission</field>
                                                       </block>
                                                     </value>
                                                     <value name="VALUE-1">
                                                       <block type="Number">
-                                                        <field name="NUM">0</field>
+                                                        <field name="NUM">0.5</field>
                                                       </block>
                                                     </value>
-                                                    <value name="VALUE-2">
-                                                      <block type="CountOf">
+                                                    <next>
+                                                      <block type="ForVariable">
                                                         <value name="VALUE-0">
-                                                          <block type="GetVariable">
-                                                            <value name="VALUE-0">
-                                                              <block type="variableReferenceBlock">
-                                                                <mutation isObjectVar="false"></mutation>
-                                                                <field name="OBJECTTYPE">Global</field>
-                                                                <field name="VAR" id="LUO.IZe(6JBeKIYZWc_5" variabletype="Global">mcoms</field>
-                                                              </block>
-                                                            </value>
+                                                          <block type="variableReferenceBlock">
+                                                            <mutation isObjectVar="false"></mutation>
+                                                            <field name="OBJECTTYPE">Global</field>
+                                                            <field name="VAR" id="sp?+qo@*pF8%_8}ChnJ:" variabletype="Global">iterator</field>
                                                           </block>
                                                         </value>
-                                                      </block>
-                                                    </value>
-                                                    <value name="VALUE-3">
-                                                      <block type="Number">
-                                                        <field name="NUM">1</field>
-                                                      </block>
-                                                    </value>
-                                                    <statement name="DO">
-                                                      <block type="EnableObjective">
-                                                        <value name="VALUE-0">
-                                                          <block type="ValueInArray">
+                                                        <value name="VALUE-1">
+                                                          <block type="Number">
+                                                            <field name="NUM">0</field>
+                                                          </block>
+                                                        </value>
+                                                        <value name="VALUE-2">
+                                                          <block type="CountOf">
                                                             <value name="VALUE-0">
                                                               <block type="GetVariable">
                                                                 <value name="VALUE-0">
@@ -282,53 +275,35 @@
                                                                 </value>
                                                               </block>
                                                             </value>
-                                                            <value name="VALUE-1">
-                                                              <block type="GetVariable">
-                                                                <value name="VALUE-0">
-                                                                  <block type="variableReferenceBlock">
-                                                                    <mutation isObjectVar="false"></mutation>
-                                                                    <field name="OBJECTTYPE">Global</field>
-                                                                    <field name="VAR" id="sp?+qo@*pF8%_8}ChnJ:" variabletype="Global">iterator</field>
-                                                                  </block>
-                                                                </value>
-                                                              </block>
-                                                            </value>
                                                           </block>
                                                         </value>
-                                                        <value name="VALUE-1">
-                                                          <block type="Boolean">
-                                                            <field name="BOOL">TRUE</field>
+                                                        <value name="VALUE-3">
+                                                          <block type="Number">
+                                                            <field name="NUM">1</field>
                                                           </block>
                                                         </value>
-                                                        <next>
-                                                          <block type="SetVariable">
+                                                        <statement name="DO">
+                                                          <block type="EnableObjective">
                                                             <value name="VALUE-0">
-                                                              <block type="variableReferenceBlock">
-                                                                <mutation isObjectVar="true"></mutation>
-                                                                <field name="OBJECTTYPE">MCOM</field>
-                                                                <field name="VAR" id="xRqK}}(gZy01FO)u]?%4" variabletype="MCOM">currentYaw</field>
-                                                                <value name="OBJECT">
-                                                                  <block type="ValueInArray">
+                                                              <block type="ValueInArray">
+                                                                <value name="VALUE-0">
+                                                                  <block type="GetVariable">
                                                                     <value name="VALUE-0">
-                                                                      <block type="GetVariable">
-                                                                        <value name="VALUE-0">
-                                                                          <block type="variableReferenceBlock">
-                                                                            <mutation isObjectVar="false"></mutation>
-                                                                            <field name="OBJECTTYPE">Global</field>
-                                                                            <field name="VAR" id="LUO.IZe(6JBeKIYZWc_5" variabletype="Global">mcoms</field>
-                                                                          </block>
-                                                                        </value>
+                                                                      <block type="variableReferenceBlock">
+                                                                        <mutation isObjectVar="false"></mutation>
+                                                                        <field name="OBJECTTYPE">Global</field>
+                                                                        <field name="VAR" id="LUO.IZe(6JBeKIYZWc_5" variabletype="Global">mcoms</field>
                                                                       </block>
                                                                     </value>
-                                                                    <value name="VALUE-1">
-                                                                      <block type="GetVariable">
-                                                                        <value name="VALUE-0">
-                                                                          <block type="variableReferenceBlock">
-                                                                            <mutation isObjectVar="false"></mutation>
-                                                                            <field name="OBJECTTYPE">Global</field>
-                                                                            <field name="VAR" id="sp?+qo@*pF8%_8}ChnJ:" variabletype="Global">iterator</field>
-                                                                          </block>
-                                                                        </value>
+                                                                  </block>
+                                                                </value>
+                                                                <value name="VALUE-1">
+                                                                  <block type="GetVariable">
+                                                                    <value name="VALUE-0">
+                                                                      <block type="variableReferenceBlock">
+                                                                        <mutation isObjectVar="false"></mutation>
+                                                                        <field name="OBJECTTYPE">Global</field>
+                                                                        <field name="VAR" id="sp?+qo@*pF8%_8}ChnJ:" variabletype="Global">iterator</field>
                                                                       </block>
                                                                     </value>
                                                                   </block>
@@ -336,8 +311,8 @@
                                                               </block>
                                                             </value>
                                                             <value name="VALUE-1">
-                                                              <block type="Number">
-                                                                <field name="NUM">0</field>
+                                                              <block type="Boolean">
+                                                                <field name="BOOL">TRUE</field>
                                                               </block>
                                                             </value>
                                                             <next>
@@ -346,7 +321,7 @@
                                                                   <block type="variableReferenceBlock">
                                                                     <mutation isObjectVar="true"></mutation>
                                                                     <field name="OBJECTTYPE">MCOM</field>
-                                                                    <field name="VAR" id="xndSqkjj}2w9ECztfo^N" variabletype="MCOM">currentPosition</field>
+                                                                    <field name="VAR" id="xRqK}}(gZy01FO)u]?%4" variabletype="MCOM">currentYaw</field>
                                                                     <value name="OBJECT">
                                                                       <block type="ValueInArray">
                                                                         <value name="VALUE-0">
@@ -376,30 +351,72 @@
                                                                   </block>
                                                                 </value>
                                                                 <value name="VALUE-1">
-                                                                  <block type="CreateVector">
+                                                                  <block type="Number">
+                                                                    <field name="NUM">0</field>
+                                                                  </block>
+                                                                </value>
+                                                                <next>
+                                                                  <block type="SetVariable">
                                                                     <value name="VALUE-0">
-                                                                      <block type="Number">
-                                                                        <field name="NUM">999</field>
+                                                                      <block type="variableReferenceBlock">
+                                                                        <mutation isObjectVar="true"></mutation>
+                                                                        <field name="OBJECTTYPE">MCOM</field>
+                                                                        <field name="VAR" id="xndSqkjj}2w9ECztfo^N" variabletype="MCOM">currentPosition</field>
+                                                                        <value name="OBJECT">
+                                                                          <block type="ValueInArray">
+                                                                            <value name="VALUE-0">
+                                                                              <block type="GetVariable">
+                                                                                <value name="VALUE-0">
+                                                                                  <block type="variableReferenceBlock">
+                                                                                    <mutation isObjectVar="false"></mutation>
+                                                                                    <field name="OBJECTTYPE">Global</field>
+                                                                                    <field name="VAR" id="LUO.IZe(6JBeKIYZWc_5" variabletype="Global">mcoms</field>
+                                                                                  </block>
+                                                                                </value>
+                                                                              </block>
+                                                                            </value>
+                                                                            <value name="VALUE-1">
+                                                                              <block type="GetVariable">
+                                                                                <value name="VALUE-0">
+                                                                                  <block type="variableReferenceBlock">
+                                                                                    <mutation isObjectVar="false"></mutation>
+                                                                                    <field name="OBJECTTYPE">Global</field>
+                                                                                    <field name="VAR" id="sp?+qo@*pF8%_8}ChnJ:" variabletype="Global">iterator</field>
+                                                                                  </block>
+                                                                                </value>
+                                                                              </block>
+                                                                            </value>
+                                                                          </block>
+                                                                        </value>
                                                                       </block>
                                                                     </value>
                                                                     <value name="VALUE-1">
-                                                                      <block type="Number">
-                                                                        <field name="NUM">999</field>
-                                                                      </block>
-                                                                    </value>
-                                                                    <value name="VALUE-2">
-                                                                      <block type="Number">
-                                                                        <field name="NUM">999</field>
+                                                                      <block type="CreateVector">
+                                                                        <value name="VALUE-0">
+                                                                          <block type="Number">
+                                                                            <field name="NUM">999</field>
+                                                                          </block>
+                                                                        </value>
+                                                                        <value name="VALUE-1">
+                                                                          <block type="Number">
+                                                                            <field name="NUM">999</field>
+                                                                          </block>
+                                                                        </value>
+                                                                        <value name="VALUE-2">
+                                                                          <block type="Number">
+                                                                            <field name="NUM">999</field>
+                                                                          </block>
+                                                                        </value>
                                                                       </block>
                                                                     </value>
                                                                   </block>
-                                                                </value>
+                                                                </next>
                                                               </block>
                                                             </next>
                                                           </block>
-                                                        </next>
+                                                        </statement>
                                                       </block>
-                                                    </statement>
+                                                    </next>
                                                   </block>
                                                 </next>
                                               </block>
@@ -714,8 +731,8 @@
                           <block type="EventPlayer"></block>
                         </value>
                         <value name="VALUE-1">
-                          <block type="OpenGadgetsItem">
-                            <field name="VALUE-0">OpenGadgetsKingston</field>
+                          <block type="ClassGadgetsItem">
+                            <field name="VALUE-0">ClassGadgetsKingston</field>
                             <field name="VALUE-1">RepairTool</field>
                           </block>
                         </value>
@@ -1746,8 +1763,14 @@
                                                 <next>
                                                   <block type="Wait">
                                                     <value name="VALUE-0">
-                                                      <block type="Number">
-                                                        <field name="NUM">0.5</field>
+                                                      <block type="GetVariable">
+                                                        <value name="VALUE-0">
+                                                          <block type="variableReferenceBlock">
+                                                            <mutation isObjectVar="false"></mutation>
+                                                            <field name="OBJECTTYPE">Global</field>
+                                                            <field name="VAR" id="OG;b*~m1Fk^w./j:JZLJ" variabletype="Global">rotationIntermission</field>
+                                                          </block>
+                                                        </value>
                                                       </block>
                                                     </value>
                                                   </block>
@@ -1803,7 +1826,7 @@
                                                         <value name="VALUE-1">
                                                           <block type="InventorySlotsItem">
                                                             <field name="VALUE-0">InventorySlots</field>
-                                                            <field name="VALUE-1">OpenGadget</field>
+                                                            <field name="VALUE-1">ClassGadget</field>
                                                           </block>
                                                         </value>
                                                       </block>
@@ -2069,8 +2092,14 @@
                                                     <next>
                                                       <block type="Wait">
                                                         <value name="VALUE-0">
-                                                          <block type="Number">
-                                                            <field name="NUM">0.5</field>
+                                                          <block type="GetVariable">
+                                                            <value name="VALUE-0">
+                                                              <block type="variableReferenceBlock">
+                                                                <mutation isObjectVar="false"></mutation>
+                                                                <field name="OBJECTTYPE">Global</field>
+                                                                <field name="VAR" id="OG;b*~m1Fk^w./j:JZLJ" variabletype="Global">rotationIntermission</field>
+                                                              </block>
+                                                            </value>
                                                           </block>
                                                         </value>
                                                       </block>
@@ -2661,7 +2690,7 @@
       </block>
     </statement>
   </block>
-  <block type="subroutineBlock" deletable="false" x="0" y="7064">
+  <block type="subroutineBlock" deletable="false" x="0" y="7490">
     <field name="SUBROUTINE_NAME">replaceMcom</field>
     <statement name="ACTIONS">
       <block type="SetVariable">
