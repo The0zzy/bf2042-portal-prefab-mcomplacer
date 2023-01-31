@@ -699,7 +699,7 @@
                                         <value name="VALUE-1">
                                           <block type="InventorySlotsItem">
                                             <field name="VALUE-0">InventorySlots</field>
-                                            <field name="VALUE-1">OpenGadget</field>
+                                            <field name="VALUE-1">ClassGadget</field>
                                           </block>
                                         </value>
                                       </block>
